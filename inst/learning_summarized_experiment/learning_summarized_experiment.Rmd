@@ -1,0 +1,113 @@
+---
+title: "Learning about Assay Data in Bioconductor"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(SummarizedExperiment)
+```
+
+
+## Learning Objectives
+
+- *Learn about* the structure of a common Bioconductor Object, `SummarizedExperiment`
+- *Learn about* slots in Bioconductor Objects
+- *Learn about* the `colData` slot in a `SummarizedExperiment`
+- *Learn about* the `assay` slot
+- *Subset and query* data by using `colData` and `assayData` together
+- *Visualize* an `SummarizedExperiment` object
+
+### Welcome to Bioconductor!
+
+What is Bioconductor? 
+
+Bioconductor is a set of R Packages that is made for high-throughput bioinformatics analysis. 
+
+What makes Bioconductor so powerful is that these packages share data structures called *objects*. 
+
+However, understanding how these *objects* work can be a real barrier to getting started in Bioconductor. 
+
+
+### Installing Bioconductor
+
+Part of what makes Bioconductor so confusing to install is that it has its own installer, which lives in a package called `BiocManager`. So, the first step to install Bioconductor packages is to use `BiocManager::install()`.
+
+We're going to install the `SummarizedExperiment` package and the `airway` dataset.
+
+```
+install.packages("BiocManager")
+BiocManager::install(c("SummarizedExperiment", "airway"))
+
+```
+
+### Walk Before We Can Run
+
+You might be impatient to load your data into Bioconductor. 
+
+We should learn about how the objects work before we try to load our data. 
+
+Let's take a guided tour of a commponly used object in Bioconductor called `SummarizedExperiment`. 
+
+To do so, we need to load the `SummarizedExperiment` package, and the `airway` dataset.
+
+```{r}
+library(SummarizedExperiment)
+library(airway)
+data(airway)
+```
+
+### Reading the print output of SummarizedExperiment
+
+
+```{r}
+airway
+```
+
+### Access sample metadata using `colData`
+
+```{r}
+colData(airway)
+```
+
+
+### assays()
+
+
+
+```{r}
+assays(airway)
+```
+So, there's an object called `count`.
+
+```{r}
+head(assays(airway)$counts)
+```
+### Check Yourself
+
+What do the rows and columns correspond to in this matrix?
+
+
+
+### rowData
+
+```{r}
+rowInfo <- rowRanges(airway)
+
+names(rowInfo)[1]
+
+rowInfo[1]
+
+slotNames(rowInfo[1])
+```
+
+
+### Subsetting Data to Specific Samples
+
+
+
+### Exercise
+
+
