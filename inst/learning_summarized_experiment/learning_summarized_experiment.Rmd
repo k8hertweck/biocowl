@@ -53,7 +53,7 @@ Let's take a guided tour of a commponly used object in Bioconductor called `Summ
 
 To do so, we need to load the `SummarizedExperiment` package, and the `airway` dataset.
 
-```{r}
+```{r exercise=TRUE}
 library(SummarizedExperiment)
 library(airway)
 data(airway)
@@ -61,37 +61,58 @@ data(airway)
 
 ### Reading the print output of SummarizedExperiment
 
+Let's look at the `airway` experiment. If we just type in 
 
-```{r}
+```{r exercise=TRUE}
 airway
 ```
+### Check Yourself
 
-### Access sample metadata using `colData`
+How many rows are in the `RangedSummarizedExperiment`?
+
+What entity does each row correspond to?
+
+## Anatomy of a SummarizedExperiment
+
+```{r}
+knitr::include_graphics("image/summarized_exp.svg")
+```
+
+
+## Access sample metadata using `colData`
+
+This experiment was run on 
 
 ```{r}
 colData(airway)
 ```
 
+### Check Yourself
 
-### assays()
+Is this study a paired design?
 
 
+## assays()
+
+The actual experimental assay measurements can be accessed by using the `assays()` method on our object:
 
 ```{r}
 assays(airway)
 ```
-So, there's an object called `count`.
+
+So, there is a list object that can be accessed `assays()` with one slot. There's an object called `counts`.
 
 ```{r}
 head(assays(airway)$counts)
 ```
+
 ### Check Yourself
 
 What do the rows and columns correspond to in this matrix?
 
+What does each cell in the matrix correspond to?
 
-
-### rowData
+## rowData
 
 ```{r}
 rowInfo <- rowRanges(airway)
@@ -100,14 +121,24 @@ names(rowInfo)[1]
 
 rowInfo[1]
 
-slotNames(rowInfo[1])
+slotNames(rowInfo)
 ```
 
+## Actually doing stuff
 
 ### Subsetting Data to Specific Samples
 
-
+The great thing about `colData` is that we can use information in it to subset samples in the dataset. 
 
 ### Exercise
 
+
+### Subsetting Data to Specific Ranges
+
+
+
+
+## Acknowledgements
+
+Parts of this tutorial are derived from https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html
 
