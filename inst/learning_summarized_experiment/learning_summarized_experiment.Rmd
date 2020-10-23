@@ -36,7 +36,7 @@ However, getting to the point of understanding how these *objects* work can be a
 
 ### Installing Bioconductor
 
-Part of what makes Bioconductor so confusing to install is that it has its own installer, which lives in a package called `BiocManager`. So, the first step to install Bioconductor packages is to use `BiocManager::install()`.
+Part of what makes Bioconductor so confusing to install is that it has its own installer, which lives in a package called `BiocManager`. So, the first step to install Bioconductor packages is to use `BiocManager::install()` instead of `install.packages`.
 
 We're going to install the `SummarizedExperiment` package and the `airway` dataset with `BiocManager::install()`:
 
@@ -46,7 +46,7 @@ BiocManager::install(c("SummarizedExperiment", "airway"))
 
 ```
 
-## One thing to keep in mind: working with lists
+## Review: working with `list`s
 
 Unfortunately, most `Bioconductor` packages do not have a tidy-style workflow. That means you'll be using some base-R concepts to do things.
 
@@ -119,6 +119,53 @@ my_list["hedgehog_names"]
 ```
 In most cases, you want to use `[[]]`.
 
+### Your Turn
+
+Find the length of the `cat_names` element in `my_list`:
+
+```{r list8, exercise=TRUE}
+my_list <- list(cat_names = c("Morris", "Julia"), 
+                hedgehog_names = "Spiny", 
+                dog_names = c("Rover", "Spot"))
+
+length(-------)
+````
+
+```{r list8-solution}
+my_list <- list(cat_names = c("Morris", "Julia"), 
+                hedgehog_names = "Spiny", 
+                dog_names = c("Rover", "Spot"))
+
+length(my_list$cat_names)
+````
+
+
+### `data.frame`s are list-like
+
+One last note. You might know that you can access columns in a `data.frame` using `$`. This is because a `data.frame` is a special *instance* of a list.
+
+Hence, you can use all of the above accessors to manipulate a `data.frame`.
+
+```{r echo=TRUE}
+data(mtcars)
+
+length(mtcars)
+
+mtcars$mpg
+
+mtcars[[1]]
+
+mtcars[["mpg"]]
+```
+
+The base-R way to subset a `data.frame` is to pass logical vectors as indices to the `data.frame`. Knowing this helps you subset Bioconductor objects easier.
+
+```{r echo=TRUE}
+data(mtcars)
+
+mtcars[mtcars$cyl == 4,]
+```
+
 ## Walk Before We Can Run
 
 You might be impatient to load your data into Bioconductor. 
@@ -151,9 +198,7 @@ What entity does each row correspond to? (hint: look at the `rownames`.)
 
 ## Anatomy of a SummarizedExperiment
 
-```{r}
-knitr::include_graphics("image/summ_exp.jpg")
-```
+<img src="image/summ_exp.jpg">
 
 ## Learning about the experiment with `metadata()`
 
