@@ -198,11 +198,15 @@ What entity does each row correspond to? (hint: look at the `rownames`.)
 
 ## Anatomy of a SummarizedExperiment
 
-<img src="image/summ_exp.jpg">
+```{r}
+knitr::include_graphics("images/summ_exp.jpg")
+```
 
 ## Learning about the experiment with `metadata()`
 
-We don't know anything about the `airway` experiment. Good objects will have some built in documentation about the experiment. This is stored in a slot called `metadata`, which we can access using the `metadata()` function.
+We don't know anything about the `airway` experiment. 
+
+Good `SummarizedExperiment` objects will have some built in documentation about the experiment. This is stored in a slot called `metadata`, which we can access using the `metadata()` function.
 
 Notice that it returns a list. We'll need to 
 
@@ -260,7 +264,7 @@ head(assays(airway)$counts)
 
 One thing to keep in mind is that the list that is accessed with `assays()` can have multiple slots. This is especially handy if there are multiple runs or multiple assays for the samples. One example might be multiple timepoints.
 
-However, there is a *restriction* that all of the objects in here must have the same dimensions. That is, they must have the same columns with the same sample ids as the others. 
+However, there is a *restriction* that all of the objects in here must have the same column dimensions. That is, they must have the same columns with the same sample ids as the others. 
 
 We've seen that this slot contains a matrix or a `data.frame`. However, it can also be other representations. Most notably, since single cell transcriptomics is sparse in terms of the number of reads mapped to each gene, the `SparseMatrix` representation is often used. This saves a lot of memory when storing these objects.   
 
