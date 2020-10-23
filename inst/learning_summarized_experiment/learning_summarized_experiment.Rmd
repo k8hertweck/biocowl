@@ -202,23 +202,28 @@ What entity does each row correspond to? (hint: look at the `rownames`.)
 knitr::include_graphics("images/summ_exp.jpg")
 ```
 
+
 ## Learning about the experiment with `metadata()`
 
 We don't know anything about the `airway` experiment. 
 
 Good `SummarizedExperiment` objects will have some built in documentation about the experiment. This is stored in a slot called `metadata`, which we can access using the `metadata()` function.
 
-Notice that it returns a list. We'll need to 
+Notice that it returns a list. 
 
-```{r}
+```{r echo=TRUE}
 md <- metadata(airway)
 class(md)
+length(md)
 ```
-```{r}
+
+We'll need to use `[[]]` to actually get at the contents.
+
+```{r echo=TRUE}
 md[[1]]
 ```
 
-```{r}
+```{r echo=TRUE}
 abstract(md[[1]])
 
 ```
@@ -308,7 +313,7 @@ airway[,airway$dex == "trt"]
 Select those samples that have an `avgLength` greater than 100.
 
 ```{r aveLength, exercise = TRUE}
-airway[, airway$----- < ---]
+airway[, airway$----- > ---]
 
 ```
 
