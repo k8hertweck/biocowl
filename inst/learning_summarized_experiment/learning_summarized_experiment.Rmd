@@ -137,6 +137,14 @@ my_list <- list(cat_names = c("Morris", "Julia"),
                 dog_names = c("Rover", "Spot"))
 
 length(my_list$cat_names)
+
+#this also works
+
+length(my_list[[1]])
+
+#this also works
+
+length(my_list[['cat_names']])
 ````
 
 
@@ -264,7 +272,8 @@ assays(airway)
 So, there is a list object that can be accessed in `assays()` with one slot. There's one object in this list called `counts`.
 
 ```{r assays2, exercise=TRUE}
-head(assays(airway)$counts)
+counts <- assays(airway)$counts
+head(counts)
 ```
 
 One thing to keep in mind is that the list that is accessed with `assays()` can have multiple slots. This is especially handy if there are multiple runs or multiple assays for the samples. One example might be multiple timepoints.
