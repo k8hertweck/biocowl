@@ -371,6 +371,9 @@ An experimental design maps the sample metadata columns from `colData` to a *des
 
 `~ cell + trt`
 
+
+
+
 ## Acknowledgements
 
 Parts of this tutorial are derived from https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html
