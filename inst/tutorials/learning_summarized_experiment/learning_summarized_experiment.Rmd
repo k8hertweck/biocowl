@@ -7,6 +7,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+options(repos = BiocManager::repositories())
 library(SummarizedExperiment)
 library(airway)
 data(airway)
@@ -173,6 +174,15 @@ data(mtcars)
 
 mtcars[mtcars$cyl == 4,]
 ```
+
+### Row names are often important in Bioconductor
+
+As we go on and learning about Bioconductor objects, it's important to acknowledge the importance of row names in Bioconductor objects.
+
+Normal tidy-workflows and `tibble()`s discourage the use of row names. However, one of the issues is that much of the data stored in a data object is in a numeric matrix format. Having a column with row identifiers can actually make it more difficult to work with data in this format.
+
+We'll learn more about this when we learn about `rowData()`.
+
 
 ## Walk Before We Can Run
 

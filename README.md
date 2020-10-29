@@ -6,7 +6,7 @@ This is a tutorial that familiarizes intermediate R users with aspects of Biocon
 
 The `SummarizedExperiment` class is one of the fundamental ways to store data in Bioconductor, whether it be protein expression, RNASeq data, or single cell data. `SummarizedExperiment` contains information about a studies' experimental design, and information about the genes or entities that the assay data maps to.
 
-![Anatomy of a Summarized Experiment](inst/learning_summarized_experiment/images/summ_exp)
+![Anatomy of a Summarized Experiment](inst/tutorials/learning_summarized_experiment/images/summ_exp.jpg)
 
 
 ### Learning Objectives
