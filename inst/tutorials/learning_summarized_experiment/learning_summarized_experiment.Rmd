@@ -10,8 +10,11 @@ knitr::opts_chunk$set(echo = FALSE)
 options(repos = BiocManager::repositories())
 library(SummarizedExperiment)
 library(airway)
+library(DESeq2)
 data(airway)
 library(dplyr)
+airwayDE <- DESeqDataSet(se = airway,
+                         design = ~ cell + dex)
 ```
 
 
@@ -45,7 +48,7 @@ We're going to install the `SummarizedExperiment` package and the `airway` datas
 
 ```
 install.packages("BiocManager")
-BiocManager::install(c("SummarizedExperiment", "airway"))
+BiocManager::install(c("SummarizedExperiment", "airway", "DESeq2"))
 
 ```
 
@@ -381,14 +384,44 @@ Now we've looked at `SummarizedExperiment`. However, to do more useful analysis,
 
 An experimental design maps the sample metadata columns from `colData` to a *design matrix*. We do that by providing a `formula`. In our case, our design is:
 
-`~ cell + trt`
+`~ cell + dex`
+
+ ### `DeSeqDataSet`
+ 
+ To make Deseq2 aware of our experimental design, we need to take our `SummarizedExperiment` object and make a new `DeSeqDataSet` object with it:
+ 
+ 
+```{r}
+airwayDE <- DESeqDataSet(se = airway,
+                         design = ~ cell + dex)
+
+airwayDE
+```
+### Exploring the DESeqDataSet object
 
 
+
+
+### Transforming (Normalizing the Data)
+ 
+ 
+ 
+ 
+### Running DESeq2
+
+```{r}
+airway_output <- DESeq(airwayDE)
+airway_results <- results(airway_output) 
+airway_results
+```
 
 
 ## Acknowledgements
 
 Parts of this tutorial are derived from https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html
+
+This vignette was also used extensively:
+http://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html
 
 ### Give us feedback
 

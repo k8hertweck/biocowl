@@ -1,6 +1,6 @@
 # BioC Owl: Learning about Bioconductor Objects
 
-This is a tutorial that familiarizes intermediate R users with aspects of Bioconductor and introduces them to the Bioconductor package ecosystem. 
+This is a tutorial package that familiarizes intermediate R users with aspects of Bioconductor and introduces them to the Bioconductor package ecosystem. 
 
 ## Learning SummarizedExperiment
 
